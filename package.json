@@ -1,7 +1,7 @@
 {
   "name": "the-doctor",
   "scripts": {
-    "dev": "wrangler dev -e dev",
+    "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
     "test": "echo \"No tests yet!\""
   },
