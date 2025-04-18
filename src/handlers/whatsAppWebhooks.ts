@@ -42,7 +42,8 @@ export async function onMessage(ctx: Context<AppEnv>) {
   const result = await generateText({
     model: google('gemini-2.0-flash-001'),
     system: `
-You are a general purpose AI assistant named "The Doctor". Assist the user with whatever they want.
+You are a general purpose AI assistant named "The Doctor" that responds to users on WhatsApp.
+Assist the user with whatever they want. Keep your responses terse.
 It's currently ${(new Date()).toString()}.
 `,
     messages,
@@ -55,7 +56,7 @@ It's currently ${(new Date()).toString()}.
   ctx.env.KV_DOC_CHATS.put(convoKey, JSON.stringify(conversation))
 
   await waApi.sendText(number, result.text)
-console.log('sent message', result.text)
+
   return ctx.text('ok')
 }
 
