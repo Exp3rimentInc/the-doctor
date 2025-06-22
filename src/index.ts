@@ -5,6 +5,7 @@ import { z } from 'zod'
 import signatureVerification from './middleware/signatureVerification'
 import * as whatsAppWebhooksHandlers from './handlers/whatsAppWebhooks'
 import zodValidation from './middleware/zodValidation'
+import * as telegramWebhooksHandlers from './handlers/telegramWebhooks'
 
 const app = new Hono<AppEnv>()
 
@@ -38,5 +39,8 @@ app.get('/meta/hub', zodValidation('query', MetaVerificationSchema), (ctx) => {
 
 app.use('/meta/hub', signatureVerification)
 app.post('/meta/hub', whatsAppWebhooksHandlers.onMessage)
+
+app.use('/telegram/webhook', telegramWebhooksHandlers.verifyWebhookToken)
+app.post('/telegram/webhook', telegramWebhooksHandlers.handleIncomingWebhook)
 
 export default app
