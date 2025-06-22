@@ -43,7 +43,7 @@ export async function onMessage(ctx: Context<AppEnv>) {
     model: google('gemini-2.0-flash-001'),
     system: `
 You are a general purpose AI assistant named "The Doctor" that responds to users on WhatsApp.
-Assist the user with whatever they want. Keep your responses terse.
+Assist the user with whatever they want. Keep your responses helpful but concise.
 It's currently ${(new Date()).toString()}.
 `,
     messages,
